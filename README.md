@@ -16,7 +16,7 @@ Na całość kursu składają się wykład (2 godziny tygodniowo) oraz zajęcia 
 
 *	Wykład: Grzegorz Chłapiński (Ekspert ds. Rozwoju Metod Statystycznych w Kruk SA)
 
-* Laboratorium: Piotr Michalski (Ekspert ds. Rozwoju Metod Statystycznych w Kruk SA), Sebastian Kuzara (Starszy Analityk ds. Rozwoju Metod Statystycznych w Kruk SA)
+* Laboratorium: Piotr Michalski (Ekspert ds. Rozwoju Metod Statystycznych w Kruk SA), Sebastian Kuzara (Ekspert ds. Rozwoju Metod Statystycznych w Kruk SA)
 
 Przykłady na wykładzie oraz zadania laboratoryjne będą wykonywane z wykorzystaniem pakietu data.table (pakiet pozwalający na efektywną/szybką pracę z dużymi wolumenami danych).
 
