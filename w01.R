@@ -153,8 +153,8 @@ fwrite(dTable, sep=";", dec=",", "fwriteTest.csv")
 # pakiet fst łączy w sobie zalety wykorzystania wielowątkowości przy zapisie,
 # odczycie oraz kompresji (jak np. .RData)
 fst::write_fst(dTable, "fstTest.fst")
-tab1 <- fst::read_fst("test.fst")
-tab2 <- fst::read_fst("test.fst", as.data.table=T)
+tab1 <- fst::read_fst("fstTest.fst")
+tab2 <- fst::read_fst("fstTest.fst", as.data.table=T)
 
 #!################################################################ zbiory danych
 rm(list=ls())
