@@ -37,7 +37,7 @@ load("KrukUWr2023.RData")
 set.seed(321)
 n <- 200
 x <- seq(from=0, to=1, length.out=n)
-#y1 <- 5*(10*(x - 0.5)^3 + (x - 0.5)^2 + (x - 0.5))
+y1 <- 5*(10*(x - 0.5)^3 + (x - 0.5)^2 + (x - 0.5))
 y1 <- 5*(10*(x - 0.5)^6 + (x - 0.5)^4 + (x - 0.5)^2)
 #y1 <- 2*x 
 
@@ -203,7 +203,7 @@ windows() # nie zamykaj mnie!!!
 plot(seq(from=1, to=K, by=2), kNearestError$TrainErr, 
   ylim=c(0.95*min(kNearestError[, -1]), 1.05*max(kNearestError[, -1])),
   col="darkgreen", type="b", 
-  xlab="k", ylab="Correctly Classified", main="Train vs Test") 
+  xlab="k", ylab="Incorrectly Classified", main="Train vs Test") 
 lines(seq(from=1, to=K, by=2), kNearestError$TestErr, 
   col="darkred", type="b")
 legend("topright", legend=c("Train", "Test"), lty=c(1, 1), pch=c(1, 1),
