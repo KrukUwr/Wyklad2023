@@ -457,14 +457,14 @@ summary(boostForest)
 # o rząd wielkości. Mniejsza wartość parametru (wolniejszy proces uczenia)
 # wymaga zazwyczaj większej liczby drzew.
 
-system.time({ # 400 sec.
-  set.seed(123)
-  boostForest2 <- gbm(Reach~., data=trnSet,
-    distribution="bernoulli",  #"gaussian", #
-    n.trees=10000, interaction.depth=3, shrinkage=0.001, n.minobsinnode=100)
-})
-
-save(list=c("boostForest2"), file="boostF2.RData")
+# system.time({ # 400 sec.
+#   set.seed(123)
+#   boostForest2 <- gbm(Reach~., data=trnSet,
+#     distribution="bernoulli",  #"gaussian", #
+#     n.trees=10000, interaction.depth=3, shrinkage=0.001, n.minobsinnode=100)
+# })
+# 
+# save(list=c("boostForest2"), file="boostF2.RData")
 load("boostF2.RData")
 
 summary(boostForest2)
@@ -474,15 +474,15 @@ summary(boostForest2)
 
 # cross-validation (+ możliwość równoległego przeliczania)
 
-system.time({ # 260 sec.
-  set.seed(123)
-  boostForest <- gbm(Reach~., data=trnSet,
-    distribution="bernoulli",  #"gaussian", #
-    n.trees=2000, interaction.depth=3, shrinkage=0.01, n.minobsinnode=100,
-    cv.folds=5, n.cores=3)
-})
-
-save(list=c("boostForest"), file="boostF3.RData")
+# system.time({ # 260 sec.
+#   set.seed(123)
+#   boostForest <- gbm(Reach~., data=trnSet,
+#     distribution="bernoulli",  #"gaussian", #
+#     n.trees=2000, interaction.depth=3, shrinkage=0.01, n.minobsinnode=100,
+#     cv.folds=5, n.cores=3)
+# })
+# 
+# save(list=c("boostForest"), file="boostF3.RData")
 load("boostF3.RData")
 
 # optymalna liczba iteracji
@@ -510,35 +510,35 @@ pretty.gbm.tree(boostForest, 5)
 # idea: buduj kolejne drzewa, nadając większą wagę obserwacjom błędnie 
 # sklasyfikowanym przez poprzednie drzewa
 
-system.time({ # 600 sec.
-  set.seed(123)
-  default <- rpart.control()
-  adaDisc <- ada(Reach~., data=trnSet, iter=500,
-    test.x=tstSet[, .SD, .SDcols=setdiff(names(tstSet), "Reach")],
-    test.y=tstSet$Reach,
-    loss="e", type="discrete", control=default)
-})
-
-system.time({ # 500 sec.
-  set.seed(123)
-  control <- rpart.control(maxdepth=2, cp=-1, minsplit=0)
-  adaReal <- ada(Reach~., data=trnSet, iter=500,
-    test.x=tstSet[, .SD, .SDcols=setdiff(names(tstSet), "Reach")],
-    test.y=tstSet$Reach,
-    nu=0.001, bag.frac=1, model.coef=FALSE,
-    loss="e", type="real", control=control)
-})
-
-system.time({ # 600 sec.
-  set.seed(123)
-  control <- rpart.control(cp=-1, maxdepth=8)
-  adaL2 <- ada(Reach~., data=trnSet, iter=500,
-    test.x=tstSet[, .SD, .SDcols=setdiff(names(tstSet), "Reach")],
-    test.y=tstSet$Reach,
-    loss="l", type="gentle", control=control)
-})
-
-save(list=c("adaDisc", "adaReal", "adaL2"), file="ada.RData")
+# system.time({ # 600 sec.
+#   set.seed(123)
+#   default <- rpart.control()
+#   adaDisc <- ada(Reach~., data=trnSet, iter=500,
+#     test.x=tstSet[, .SD, .SDcols=setdiff(names(tstSet), "Reach")],
+#     test.y=tstSet$Reach,
+#     loss="e", type="discrete", control=default)
+# })
+# 
+# system.time({ # 500 sec.
+#   set.seed(123)
+#   control <- rpart.control(maxdepth=2, cp=-1, minsplit=0)
+#   adaReal <- ada(Reach~., data=trnSet, iter=500,
+#     test.x=tstSet[, .SD, .SDcols=setdiff(names(tstSet), "Reach")],
+#     test.y=tstSet$Reach,
+#     nu=0.001, bag.frac=1, model.coef=FALSE,
+#     loss="e", type="real", control=control)
+# })
+# 
+# system.time({ # 600 sec.
+#   set.seed(123)
+#   control <- rpart.control(cp=-1, maxdepth=8)
+#   adaL2 <- ada(Reach~., data=trnSet, iter=500,
+#     test.x=tstSet[, .SD, .SDcols=setdiff(names(tstSet), "Reach")],
+#     test.y=tstSet$Reach,
+#     loss="l", type="gentle", control=control)
+# })
+# 
+# save(list=c("adaDisc", "adaReal", "adaL2"), file="ada.RData")
 load("ada.RData")
 
 # discrete adaBoost
