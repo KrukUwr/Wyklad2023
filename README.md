@@ -1,3 +1,5 @@
+**Termin egzaminu: 2024.01.09**
+
 # Modelowanie Statystyczne w Zarządzaniu Wierzytelnościami Masowymi
 
 **Opis kursu:**
